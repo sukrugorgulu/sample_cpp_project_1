@@ -74,6 +74,7 @@ int main( int argc, char** argv )
         curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
         if(dns_server_set == "yes") 
         {
+            cout << "This requires libcurl built with name resolving backend that needs using c-ares." << endl;
             cout << "Will use " << google_dns_ips << " as DNS" << endl;
             curl_easy_setopt(curl, CURLOPT_DNS_SERVERS, google_dns_ips.c_str()); //  google dns
         }
