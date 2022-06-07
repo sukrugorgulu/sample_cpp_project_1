@@ -9,10 +9,6 @@ IF(AUTO_BUILDING)
     add_definitions(-DIS_RELEASE_BUILD=1)
 ENDIF(AUTO_BUILDING)
 
-IF(COMPILING_4_VIRTUALBOX)
-    add_definitions(-DLINUX_VBOX_COMPILE=1)
-ENDIF(COMPILING_4_VIRTUALBOX)
-
 option(DEBUG_OPTION "DEBUG_OPTION" OFF)
 if(DEBUG_OPTION)
     set(BUILD_TYPE "Debug")
@@ -50,7 +46,6 @@ add_executable(curl-test curl_test.cpp )
 #-------------------------------------------------------------------------------------
 set(LINKLIBS_CURL
     stdc++
-    c++abi
     c    
     curl    
     ssl
