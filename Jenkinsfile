@@ -22,7 +22,7 @@ pipeline {
                 echo 'Deploying....'
                 sh 'mkdir -p ./files/bin'
                 sh 'mkdir -p ./files/lib'
-                sh 'ldd ./curl-test | grep \"=> /\" | awk \'{print $3}\' | xargs -I '{}' cp -v \'{}\' ./files/lib'
+                # sh 'ldd ./curl-test | grep \"=> /\" | awk \'{print $3}\' | xargs -I '{}' cp -v \'{}\' ./files/lib'
                 sh 'cp ./curl-test ./files/bin'
                 sh 'tar -zcvf app-package.tar.gz ./files'
             }
