@@ -5,11 +5,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                rm -rf build
-                mkdir build
-                cd build
-                cmake ..
-                make
+                sh 'rm -rf ./build'
+                sh 'mkdir ./build'
+                sh 'cd ./build'
+                sh 'cmake ..'
+                sh 'make'
             }
         }
         stage('Test') {
@@ -20,11 +20,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                mkdir -p ./files/bin
-                mkdir -p ./files/lib
-                ldd ./curl-test | grep "=> /" | awk '{print $3}' | xargs -I '{}' cp -v '{}' ./files/lib
-                cp ./curl-test ./files/bin
-                tar -zcvf app-package.tar.gz ./files
+                sh 'mkdir -p ./files/bin'
+                sh 'mkdir -p ./files/lib'
+                sh 'ldd ./curl-test | grep \"=> /\" | awk \'{print $3}\' | xargs -I '{}' cp -v \'{}\' ./files/lib'
+                sh 'cp ./curl-test ./files/bin'
+                sh 'tar -zcvf app-package.tar.gz ./files'
             }
         }
     }
